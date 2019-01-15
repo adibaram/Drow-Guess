@@ -7,7 +7,7 @@
                           v-on:touchend="handleMouseUp"  
                           v-on:mousemove="handleMouseMove" 
                           v-on:touchmove="handleMouseMove" 
-                          width="400px" height="400px">
+                          max-width="400px" height="400px">
       </canvas>
 
   </section>

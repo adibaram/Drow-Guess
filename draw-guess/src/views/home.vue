@@ -4,11 +4,14 @@
 
       <router-link :to="{name: 'chooseWord'}">
         <button v-if="getPlayersCount() === 0" @click="incrementPlayersCount">Player 1</button>
-        <button v-else>Player 1 is waiting</button>
+        <button v-else-if="getPlayersCount() === 1">Player 1 is waiting</button>
+        <button v-else>Player 1</button>
+
+ 
       </router-link>
       
       <!-- <button v-if="getPlayersCount() === 1" @click="incrementPlayersCount">Player 2</button> -->
-      <router-link v-if="getPlayersCount() === 1"  @click="incrementPlayersCount" to="/wait" tag="button">Player 2</router-link>
+      <router-link v-if="getPlayersCount() === 1" to="/wait"><button @click="incrementPlayersCount"> Player 2</button></router-link>
       <button v-else> Player 2</button>
 
   </section>
