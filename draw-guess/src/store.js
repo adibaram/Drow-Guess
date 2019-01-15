@@ -8,6 +8,7 @@ export default new Vuex.Store({
     isLoggedinUser: false,
     isSecondLoggdin: false,
     playersCount: 0,
+    selectedWord: null
 
   },
 
