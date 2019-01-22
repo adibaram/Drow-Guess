@@ -36,7 +36,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
-  max-width: 700px; 
+  /* margin-top: 60px; */
+  padding: 60px;
+  max-width: 700px;
+  height: 100vh;
+  background-color: beige; 
 }
 </style>

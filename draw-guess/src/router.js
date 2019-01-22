@@ -10,6 +10,7 @@ import draw from './views/draw.vue';
 import guess from './views/guess.vue'; 
 import wait from './views/wait.vue'; 
 import gameRoom from './views/gameRoom.vue'; 
+import gameOver from './views/gameOver.vue'; 
 
 
 Vue.use(Router);
@@ -53,6 +54,11 @@ const router =  new Router({
       path: '/wait',
       name: 'wait',
       component: wait
+    }, 
+    {
+      path: '/gameOver',
+      name: 'gameOver',
+      component: gameOver
     }
 
   ]

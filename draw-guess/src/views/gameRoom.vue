@@ -1,8 +1,13 @@
 <template>
     <section>
-        <choose-word v-if="isDraw"></choose-word>
 
-        <guess-page v-else></guess-page>
+        <div v-if="playsCount === 1">
+            <h1>Hi {{userName}}, please wait for a second player</h1>
+        </div>
+        <div v-else-if="playsCount === 2">
+            <choose-word v-if="isDraw"></choose-word>
+            <guess-page v-else></guess-page>
+        </div>
 
     </section>
 </template>
@@ -25,13 +30,19 @@ export default {
         chooseWord
     }, 
     created() {
-        this.user = this.$store.getters.getPlayersCount;
-        console.log('user type:', this.$store.getters.getPlayersCount);
-        console.log(this.$store.getters.isDraw);
+        // this.user = this.$store.getters.getPlayersCount;
+        // console.log('user type:', this.$store.getters.getPlayersCount);
+        // console.log(this.$store.getters.isDraw);
     },
     computed: {
-        isDraw(){
+        isDraw() {
             return this.$store.getters.isDraw;
+        },
+        userName() {
+            return this.$store.getters.getUserName;
+        },
+        playsCount() {
+            return this.$store.getters.getPlayersCount;
         }
     }
 }

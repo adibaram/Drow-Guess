@@ -17,7 +17,8 @@ export default new Vuex.Store({
     drawUrl:'',
     isDoneDrawing: false, 
     isDraw: false,
-    userName: ''
+    userName: '',
+    gameOver: false 
 
   },
 
@@ -28,14 +29,23 @@ export default new Vuex.Store({
     getCurrCanvasUrl(state) {
       return state.canvasUrl; 
     },
-    isDraw(state){
+    isDraw(state) {
       return state.isDraw;
     },
-    isDoneDrawing(state){
+    isDoneDrawing(state) {
       return state.isDoneDrawing;
     },
     getImgUrl(state) {
       return state.drawUrl; 
+    },
+    getUserName(state) {
+      return state.userName; 
+    },
+    getSelectedWord(state) {
+      return state.selectedWord;
+    },
+    getIsGameOver(state) {
+      return state.gameOver;
     }
 
 
@@ -79,6 +89,9 @@ export default new Vuex.Store({
       if (state.userName === userName) {
       state.isDraw = turn;
       }
+    },
+    setGameOver(state) {
+      state.gameOver = true; 
     }
 
   },
@@ -92,7 +105,8 @@ export default new Vuex.Store({
 
     setSelctedWord(context, {selectedWord}) {
       context.commit('setSelctedWord', {selectedWord});
-      // console.log('user selected a word:', {selectedWord});
+      socketEmitter.$socket.emit('wordChosen',context.state.gameRoom, selectedWord); 
+      console.log('user selected a word:', {selectedWord});
     },
 
     setCanvasUrl(context, {canvasUrl}) {
@@ -111,17 +125,24 @@ export default new Vuex.Store({
       commit('setUserName', name);
       socketEmitter.$socket.emit('gameRoom', name); 
     },
+    setGameOver(context) {
+      context.commit('setGameOver');
+      socketEmitter.$socket.emit('gameOver',context.state.gameRoom); 
+    }, 
+
     SOCKET_gameRoom(context, {userName, turn, gameRoom}){
       context.commit('setGameRoom', {userName, turn, gameRoom});
-      console.log('socket store', this.state.playersCount);
-      
+      // console.log('socket store', this.state.playersCount);
+    },
+    SOCKET_wordChosen(context, {selectedWord}) {
+      context.commit('setSelctedWord', {selectedWord});
     },
     SOCKET_drawSubmitted(context, {drawUrl}) {
       context.commit('setDrawUrl', {drawUrl});
+    },
+    SOCKET_gameOver(context) {
+      context.commit('setGameOver');
     }
-
-
-    
 
   },
 

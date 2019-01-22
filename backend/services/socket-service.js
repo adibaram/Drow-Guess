@@ -80,32 +80,25 @@ module.exports = io => {
 
             // console.log('joind to gameRoom', gameRoomId);
         });
+
+        socket.on('wordChosen', function(gameRoom, word) {
+            console.log('word-socket', word);
+            var userRoom = findRoom(gameRoom.id);
+            io.to(userRoom.id).emit('wordChosen', {selectedWord: word});
+
+        });
+
         socket.on('drawSubmitted', function(gameRoom, url) {
             var userRoom = findRoom(gameRoom.id);
             io.to(userRoom.id).emit('drawSubmitted', {drawUrl: url});
 
         });
 
-        // socket.on('sendImg', ({imgUrl, gameId})=> {
-        //     gameService.update(gameId,{
-        //         $push: {
-        //             imgs: {
-        //                $each:[imgUrl],
-        //                $position:1
-        //             }
-        //           }
-        //     })
-        // })
+        socket.on('gameOver', function(gameRoom) {
+            var userRoom = findRoom(gameRoom.id);
+            io.to(userRoom.id).emit('gameOver');
 
-
-
-        // socket.on('newChatMsg', ({msg, cheerId})=>{
-        //     cheerService.update(cheerId,{$push: {msgs: msg}})
-        //         .then(() => {
-        //             io.to(cheerId).emit('gotNewChatMsg', msg);
-        //         });
-
-        // });
+        });
 
     });
 

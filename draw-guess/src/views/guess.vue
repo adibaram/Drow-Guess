@@ -5,11 +5,12 @@
       <img src="@/assets/pencil.gif" height="400px">
     </div>
     <div v-else>
-      <h1>Please guess</h1>
+      <h1>Start guessing..</h1>
       <img :src="setImg">
       <form @submit.prevent="checkAnswer">
         <input class="word-guess" v-model="guess" type="text">
         <button>Send</button>
+        <h3 v-if="this.wrongGuess">try again</h3>
       </form>
     </div>
   </section>
@@ -21,7 +22,9 @@
 export default {
   data() {
     return {
-      guess: ''
+      guess: '',
+      wrongGuess: false,
+      gameOver: false
       // isWaiting: ''
     }
   },
@@ -32,6 +35,19 @@ export default {
   methods: {
     checkAnswer() {
       this.$store.dispatch({ type:'setGuess', userGuess: this.guess.toLowerCase()});
+
+      let selectedWord = this.$store.getters.getSelectedWord; 
+      console.log('selected word - guess comp', selectedWord);
+      if (this.guess.toLowerCase() === selectedWord) {
+        this.gameOver = true;
+        this.$store.dispatch({type:'setGameOver'});
+        this.$router.push('/gameOver');
+      } else {
+        console.log('continue guessing');
+        this.wrongGuess = true;
+        this.guess = '';
+
+      }
     },
   },
   computed: {

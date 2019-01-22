@@ -3,7 +3,7 @@
         <h1>Join the game!</h1>
         <form @submit.prevent="startGame">
             Your name:<input class="user-name" v-model="user.name" type="text"><br>
-            <button>Start here</button>
+            <button class="start-here">Start here</button>
         </form>
     </section>
 </template>
@@ -39,5 +39,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+    .start-here {
+        height: 70px;
+        width: 70px;
+        border: 1px black solid; 
+        border-radius: 50%; 
+    }
 </style>
