@@ -1,13 +1,13 @@
 <template>
   <section class="draw-board">
       <!-- <canvas @mousedown="onMouseDown"></canvas> -->
-      <canvas id="canvas" v-on:mousedown="handleMouseDown"
-                          v-on:touchstart="handleMouseDown" 
-                          v-on:mouseup="handleMouseUp"
-                          v-on:touchend="handleMouseUp"  
-                          v-on:mousemove="handleMouseMove" 
-                          v-on:touchmove="handleMouseMove" 
-                          max-width="400px" height="400px">
+      <canvas ref="canvas" id="canvas" v-on:mousedown="handleMouseDown"
+                            v-on:touchstart="handleMouseDown" 
+                            v-on:mouseup="handleMouseUp"
+                            v-on:touchend="handleMouseUp"  
+                            v-on:mousemove="handleMouseMove" 
+                            v-on:touchmove="handleMouseMove" 
+                            max-width="400px" height="400px">
       </canvas>
 
   </section>
@@ -37,10 +37,10 @@ export default {
 
    ready: function () {
                     
-                    var c = document.getElementById("canvas");
+    var c = document.getElementById("canvas");
     var ctx = c.getContext("2d");
-                    ctx.translate(0.5, 0.5);
-                    ctx.imageSmoothingEnabled= false;
+    ctx.translate(0.5, 0.5);
+    ctx.imageSmoothingEnabled= false;
   // this.draw();
 },
 
@@ -106,8 +106,16 @@ export default {
       ctx.moveTo(this.currentMouse.x, this.currentMouse.y)
     
     },
-        handleMouseUp: function () {
+      handleMouseUp: function () {
       this.mouse.down = false;
+
+      //save current canvas url to store
+      let currCanvas = this.$refs.canvas;
+      console.log('currCanvas', currCanvas);
+      let pngUrl = currCanvas.toDataURL();
+      // let pngUrl = 'currCanvas.toDataURL()';
+      this.$store.dispatch({ type: 'setCanvasUrl', canvasUrl: pngUrl});
+
     },
     handleMouseMove: function (event) {
 
@@ -137,7 +145,7 @@ export default {
   .draw-board {
     width: 90%; 
     height: 400px; 
-    background-color: beige;
+    background-color: #fbf49c;
   }
 
 </style>

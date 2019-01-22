@@ -19,18 +19,14 @@ export default {
   },
 
 created() {
-  wordsService.getRandomWords();
+
 },
   components: {
     wordsList
-    //     try() {
-    //   wordsService.getRandomWords();
-    // }
+
   },
   methods: {
-    // try() {
-    //   wordsService.getRandomWords();
-    // }
+
   }
 };
 </script>

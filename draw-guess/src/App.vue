@@ -12,13 +12,20 @@
 <script>
 import HelloWorld from './components/HelloWorld.vue';
 import home from './views/home.vue';
+import homePage from './views/homePage.vue';
 import axios from 'axios';
 
 export default {
   name: 'app',
   components: {
-    home
-  }
+    homePage
+  },
+  sockets: {
+    connect() {
+      console.log("socket connected");
+    },
+    
+    }
 }
 </script>
 

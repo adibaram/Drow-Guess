@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 
 const history = require('connect-history-api-fallback');
-
+const addUserRoutes = require('./routes/user-route');
 
 const app = express();
 var http = require('http').Server(app);
@@ -26,6 +26,8 @@ app.use(session({
     expires: 600000
   }
 }))
+
+addUserRoutes(app);
 
 //backend port check
 // app.get('/', function(req, res){

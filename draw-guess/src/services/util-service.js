@@ -6,14 +6,14 @@ function getRandomInt(min, max) {
 
 var id = 0;
 function makeId(length = 5) {
-    // var text = '';
-    // var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var text = '';
+    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
-    // for (var i = 0; i < length; i++)
-    //     text += possible.charAt(Math.floor(Math.random() * possible.length));
+    for (var i = 0; i < length; i++)
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
 
-    // return text;
-    return `${++id}`;
+    return text;
+    // return `${++id}`;
 }
 
 

@@ -4,10 +4,12 @@ import Router from 'vue-router';
 
 //views
 import Home from './views/home.vue';
+import homePage from './views/homePage.vue';
 import chooseWord from './views/chooseWord.vue'; 
 import draw from './views/draw.vue'; 
 import guess from './views/guess.vue'; 
 import wait from './views/wait.vue'; 
+import gameRoom from './views/gameRoom.vue'; 
 
 
 Vue.use(Router);
@@ -17,9 +19,19 @@ const router =  new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/',
+      path: '/home',
       name: 'home',
       component: Home
+    }, 
+    {
+      path: '/',
+      name: 'home',
+      component: homePage
+    }, 
+    {
+      path: '/game',
+      name: 'game',
+      component: gameRoom
     }, 
     {
       path: '/choose',
