@@ -37,9 +37,10 @@ export default {
   text-align: center;
   color: #2c3e50;
   /* margin-top: 60px; */
+  overflow: hidden;
   padding: 60px;
   max-width: 700px;
-  height: 100vh;
+  height: 77vh ;
   background-color: beige; 
 }
 </style>

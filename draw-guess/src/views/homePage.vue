@@ -24,15 +24,8 @@ export default {
     },
     methods: {
        startGame() {
-            // console.log('inside gameroom');
-            // this.$socket.emit('gameRoom', 'room1', this.user.name);
             this.$store.dispatch({type: 'setUserName', name: this.user.name});
-            // this.$socket.emit('gameRoom', this.user.name);  
             this.$router.push('/game');
- 
-            // setTimeout(()=> {
-            //     this.$router.push('/game');
-            // },300)
         }
     }
 }
@@ -40,9 +33,15 @@ export default {
 
 <style lang="scss" scoped>
     .start-here {
+        margin: 10px;
         height: 70px;
         width: 70px;
         border: 1px black solid; 
         border-radius: 50%; 
+
+    }
+
+    .user-name {
+        margin: 10px;
     }
 </style>

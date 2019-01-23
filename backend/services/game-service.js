@@ -1,3 +1,5 @@
+//preperation for data base use - in order to save best games results. 
+
 const mongoService = require('./mongo-service')
 
 const ObjectId = require('mongodb').ObjectId;

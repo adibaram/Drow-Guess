@@ -7,7 +7,7 @@
                             v-on:touchend="handleMouseUp"  
                             v-on:mousemove="handleMouseMove" 
                             v-on:touchmove="handleMouseMove" 
-                            max-width="400px" height="400px">
+                            width="240px" height="400px">
       </canvas>
 
   </section>
@@ -142,11 +142,19 @@ export default {
 </script>
   
 <style lang="scss" scoped>
-  .draw-board {
-    width: 90%; 
-    height: 400px; 
-    background-color: #fbf49c;
+  // .draw-board {
+  //   width: 150px; 
+  //   height: 400px; 
+  //   background-color: #fbf49c;
+  // }
+
+    .draw-board {
+      border: 1px solid black;
+      width: 240px; 
+      height: 400px; 
+      background-color: #fbf49c;
   }
+
 
 </style>
 

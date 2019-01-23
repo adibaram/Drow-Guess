@@ -1,6 +1,9 @@
 var dbConn = null;
 const url = 'mongodb://<dbuser>:<dbpassword>@ds026898.mlab.com:26898/draw';
 
+
+//preperation for data base use - in order to save best games results. 
+
 function connectToMongo() {
     // Reuse existing connection if exist
     if (dbConn) return Promise.resolve(dbConn);

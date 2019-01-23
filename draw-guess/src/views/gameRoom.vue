@@ -3,6 +3,7 @@
 
         <div v-if="playsCount === 1">
             <h1>Hi {{userName}}, please wait for a second player</h1>
+            <img class="wait-gif" src="@/assets/pencil.gif" height="300px">
         </div>
         <div v-else-if="playsCount === 2">
             <choose-word v-if="isDraw"></choose-word>

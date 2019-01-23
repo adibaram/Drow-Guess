@@ -71,5 +71,7 @@ export default {
     button {
         border: 1px solid black; 
         border-radius: 5px; 
+        padding: 10px;
+        font-size: 0.9em;
     }
 </style>

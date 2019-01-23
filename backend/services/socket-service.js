@@ -33,15 +33,22 @@ module.exports = io => {
             var userRoom;
             var availableRoom = findAvailableRoom();
             if (availableRoom) {
-				var userRoom = availableRoom;
+                var userRoom = availableRoom;
+                console.log('availableRoom.members[0]',availableRoom.members[0], 'userName', userName)
+                if (availableRoom.members[0] == userName) {
+                    userName = userName + 1;
+                    userRoom.members.push(userName);
+                    console.log(userRoom.members)
+                } else {
 				console.log(
 					`${userName} added to availableRoom ${JSON.stringify(
 						userRoom,
 						null,
 						2
-					)}`
-				);
+                      )}`
+                    );
                 userRoom.members.push(userName);
+                }
             } else {
 				userRoom = createRoom(userName);
 				gRooms.push(userRoom);
@@ -54,24 +61,7 @@ module.exports = io => {
 				);
 			}
 
-
-
-            // if (!room){
-            // gRooms.push({id: gameRoomId, members: [userName]})
-            
-            // } else {
-            //     isAvailable(room) === true ? room.members.push(userName) :
-            //     gRooms.push({id: gameRoomId, members: [userName]})
-            // }
-
-
-            console.log('current rooms', gRooms)
-            // gSocketsId[userName]= socket.id;
-            // socket.join(gameRoomId);
-            // socket.join(gRoomId);
-            // io.to(gameRoomId).emit('gameRoom');
-            // io.to(gRoomId).emit('gameRoom');
-
+            // console.log('current rooms', gRooms)
 
             socket.join(userRoom.id);
             // io.to - send to everyone in the room (include the sender)
@@ -99,6 +89,13 @@ module.exports = io => {
             io.to(userRoom.id).emit('gameOver');
 
         });
+
+        socket.on('setUserName', function(gameRoom) {
+            var userRoom = findRoom(gameRoom.id);
+            io.to(userRoom.id).emit('gameOver');
+
+        });
+
 
     });
 

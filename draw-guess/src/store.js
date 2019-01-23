@@ -6,8 +6,6 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    isLoggedinUser: false,
-    isSecondLoggdin: false,
     playersCount: 0,
     selectedWord: null,
     userType: '',
@@ -18,7 +16,8 @@ export default new Vuex.Store({
     isDoneDrawing: false, 
     isDraw: false,
     userName: '',
-    gameOver: false 
+    gameOver: false,
+    gameStartTime: null 
 
   },
 
@@ -48,42 +47,41 @@ export default new Vuex.Store({
       return state.gameOver;
     }
 
-
   },
 
   mutations: {
     incrementPlayers(state) {
       state.playersCount++;
-      console.log('playersCount', this.state.playersCount);
+      // console.log('playersCount', this.state.playersCount);
     },
     setUserName(state, name){
-      console.log(name)
+      // console.log(name)
       state.userName = name;
     },
     setGuess(state, {userGuess}) {
       state.userGuess = userGuess;
-      console.log('DEBUG:store-setGuess:guess', userGuess);
+      // console.log('DEBUG:store-setGuess:guess', userGuess);
     },
     setSelctedWord(state, {selectedWord}) {
       state.selectedWord = selectedWord;
-      console.log('DEBUG:store-setSelctedWord:selectedWord', selectedWord);
+      // console.log('DEBUG:store-setSelctedWord:selectedWord', selectedWord);
     },
     setDoneDrawing(state) {
       state.isDoneDrawing = true;
-      console.log('DEBUG:store-setDoneDrawing:true', state.isDoneDrawing);
+      // console.log('DEBUG:store-setDoneDrawing:true', state.isDoneDrawing);
     },
     setCanvasUrl(state, {canvasUrl}) {
       state.canvasUrl = canvasUrl;
-      console.log('DEBUG:store-setCanvasUrl:canvasUrl', canvasUrl);
+      // console.log('DEBUG:store-setCanvasUrl:canvasUrl', canvasUrl);
     },
     setDrawUrl(state, {drawUrl}) {
       state.drawUrl = drawUrl;
       state.isDoneDrawing = true;
-      console.log('DEBUG:store-setDrawUrl:drawUrl', drawUrl);
+      // console.log('DEBUG:store-setDrawUrl:drawUrl', drawUrl);
     },
     setGameRoom( state, {userName, turn, gameRoom}){
       state.gameRoom = gameRoom;
-      console.log('DEBUG:store-setGameRoom:gameRoom', gameRoom);
+      // console.log('DEBUG:store-setGameRoom:gameRoom', gameRoom);
 
       !turn? state.playersCount = 2 : state.playersCount = 1;
       if (state.userName === userName) {
@@ -106,7 +104,7 @@ export default new Vuex.Store({
     setSelctedWord(context, {selectedWord}) {
       context.commit('setSelctedWord', {selectedWord});
       socketEmitter.$socket.emit('wordChosen',context.state.gameRoom, selectedWord); 
-      console.log('user selected a word:', {selectedWord});
+      // console.log('user selected a word:', {selectedWord});
     },
 
     setCanvasUrl(context, {canvasUrl}) {
