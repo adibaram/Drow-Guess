@@ -3,7 +3,6 @@ import Router from 'vue-router';
 // import NProgress from 'nprogress';
 
 //views
-import Home from './views/home.vue';
 import homePage from './views/homePage.vue';
 import chooseWord from './views/chooseWord.vue'; 
 import draw from './views/draw.vue'; 
@@ -19,11 +18,6 @@ const router =  new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
-    {
-      path: '/home',
-      name: 'home',
-      component: Home
-    }, 
     {
       path: '/',
       name: 'home',
