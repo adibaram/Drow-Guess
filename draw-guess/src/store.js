@@ -117,7 +117,7 @@ export default new Vuex.Store({
     setDrawUrl(context, {drawUrl}) {
       context.commit('setDrawUrl', {drawUrl});
       socketEmitter.$socket.emit('drawSubmitted',context.state.gameRoom, drawUrl); 
-      // console.log('draw link:', {drawUrl});
+      console.log('draw link:', {drawUrl});
     },
     setUserName({commit}, {name}){
       commit('setUserName', name);
