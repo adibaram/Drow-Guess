@@ -15,7 +15,7 @@
 <script>
 // @ is an alias to /src
 import drawBoard from '../components/drowBoard.vue';
-import cloudinaryService from '../services/cloudinaryService.js';
+// import cloudinaryService from '../services/cloudinaryService.js';
 import gameOver from './gameOver.vue';
 
 export default {
@@ -32,7 +32,7 @@ export default {
     methods: {
       uploadCanvas() {
         let imgUrl = this.$store.getters.getCurrCanvasUrl;
-        cloudinaryService.uploadImg(imgUrl);
+        // cloudinaryService.uploadImg(imgUrl);
         this.isDrawing = false;  
         this.$store.dispatch({type: 'setDoneDrawing'});
       }
